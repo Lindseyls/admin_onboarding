@@ -1,0 +1,16 @@
+<h1><%= @employee.name %></h1>
+<ul>
+  <li>Email: <%= @employee.email %></li>
+  <li>Hire Date: <%= @employee.hire_date %></li>
+  <li>Department: <%= @employee.department.name %></li>
+  <li>Role: <%= @employee.role.title %></li>
+  <li>Status: <%= @employee.onboarding_status %></li>
+</ul>
+<%= form_with(model: @employee, url: update_onboarding_employee_path(@employee), method: :patch) do |f| %>
+  <%= f.label :onboarding_status, "Change Onboarding Status" %><br>
+  <%= f.select :onboarding_status, Employee::ONBOARDING_STATUSES %>
+  <%= f.submit "Update Status" %>
+<% end %>
+<br>
+<%= link_to "Edit", edit_employee_path(@employee) %>
+<%= link_to "Back", employees_path %>

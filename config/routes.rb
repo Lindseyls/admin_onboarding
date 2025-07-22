@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  root 'employees#index'
+
+  resources :employees do
+    member do
+      patch :update_onboarding
+    end
+  end
+
+  resources :departments do
+    get :employees, on: :member
+  end
+
+  resources :roles
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
